@@ -1,3 +1,6 @@
+# Sorting algorthythm
+# from book by Thomas H. Cormen - Algorithms
+
 a = [8,4,29,56,1,7,9,100]
 
 for index, item in enumerate(a):

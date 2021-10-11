@@ -1,3 +1,5 @@
+# https://github.com/r-ss/leetcode
+
 class Solution(object):
     def twoSum(self, nums, target: int):
         m = []
