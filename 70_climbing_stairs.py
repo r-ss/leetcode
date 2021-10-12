@@ -2,28 +2,39 @@
 # https://leetcode.com/problems/climbing-stairs/
 
 class Solution:
-
-    def __init__(self):
-        self.counter = 0
     def climbStairs(self, n):
-        # print('climbStairs >>>', n, self.counter)
+        
+        a = b = 0
+
+        # if n == 0:
+        #     return 0
+
+        if n == 1:
+            return 1
+
+        if n == 2:
+            return 2
+
+        #   n   1   2   3   4   5
+        #       1   2   3   5   8
+
+        for i in range(n):
+            a, b = b, a + b
+
+            if i == 1:
+                a = 1
+                b = 1
 
 
-        if n == 0:
-            # print('>>> returning')
-            # print(self.counter)
-            if self.counter > 2:
-                return self.counter - 1
-            return self.counter
+            # a   b   n
+            # 0   0   1
+            # 1   1   2
+            
+            # 3   2   5
 
-        if (n % 2) == 0: # n is even
-            # print('even')
-            self.counter += 3
-            return ( self.climbStairs( n - 2 ) )
-        else: # n is odd
-            # print('odd')
-            self.counter += 1
-            return ( self.climbStairs( n - 1 ) )
+
+        
+        return a + b
 
 def test_solution():
 
