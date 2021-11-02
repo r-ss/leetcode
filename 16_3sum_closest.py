@@ -8,25 +8,14 @@ class Solution:
         n = len(nums)
         ans = nums[0] + nums[1] + nums[2]
 
-        # if abs(ans - target) > abs(sum3 - target):
-
-        explan = '000'
-
-
         for i in range(1, n - 1):
 
-            lastleft = False
-            
             l, c, r = 0, i, n - 1
             while l < r:
 
                 if l >= c:
-                    # l += 1
-                    # lastleft = True
                     break
                 if r <= c:
-                    # r -= 1
-                    # lastleft = False
                     break
 
                 sum = nums[l] + nums[c] + nums[r]
@@ -37,38 +26,13 @@ class Solution:
 
                 # print('sum', i, ' (', nums[l],  nums[c], nums[r], ') ', sum)
 
-                # diff = sum - target
                 if abs(sum - target) < abs(ans - target):
                     ans = sum
-                    # explan = f'explan i={i} nums={nums[l],  nums[c], nums[r]} sum={sum}, diff={abs(sum - target)}'
-
-                
-
-                # print(sum)
-
-                # if lastleft:
-                #     r -= 1
-                # else:
-                #     l += 1
-
-                # lastleft = not lastleft
 
                 if sum < target:
                     l += 1
                 elif sum > target:
                     r -= 1
-                
-
-
-                # l += 1
-
-                # if sum < target:
-                #     r -= 1
-
-                # if sum == target:
-                    # return sum
-
-        # print(explan)
 
         return ans
 
