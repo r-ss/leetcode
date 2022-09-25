@@ -16,6 +16,8 @@ class Solution:
             if not letter in b:
                 return False
         return True
+
+        # Other way is just to sort 2 lists maked of string and chack if they equal...
         
         
 def test_solution():
