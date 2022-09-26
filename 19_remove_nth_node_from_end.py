@@ -9,6 +9,14 @@ class ListNode:
         self.val = val
         self.next = next
 
+    def __repr__(self) -> str:
+        node = self
+        arr = [node.val]
+        while node.next is not None:
+            node = node.next
+            arr.append(node.val)
+        return "[{}]".format(", ".join(map(str, arr)))
+
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         
