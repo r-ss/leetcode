@@ -1,5 +1,5 @@
 # https://github.com/r-ss/leetcode
-# https://leetcode.com/problems/swap-nodes-in-pairs/
+# https://leetcode.com/problems/reverse-nodes-in-k-group/
 
 from typing import Optional, List
 
@@ -52,10 +52,9 @@ class LinkedListHelper:
         return node
 
 class Solution:
-    def swapPairs(self, head: Optional[ListNode] = None) -> Optional[ListNode]:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
 
         values = LinkedListHelper().values(head)
-        # print("values:", values)
 
         if len(values) == 0:
             return None
@@ -64,24 +63,31 @@ class Solution:
             return head
 
         new = []
-        for n in range(len(values)):
-            val = values[n]
-            if (n % 2) == 0:
-                # even
-                new.insert(n, val)
+
+        def divide_array_to_chunks(l, n):
+            # looping till length l
+            for i in range(0, len(l), n):
+                yield l[i:i + n]
+
+        chunks = list(divide_array_to_chunks(values, k))
+
+        for i in range(len(chunks)):
+            chunk = chunks[i]
+            if len(chunk) >= k:
+                for j in reversed(chunk):
+                    new.append(j)
             else:
-                # odd
-                new.insert(n-1, val)
+                for j in chunk:
+                    new.append(j)
 
         node = LinkedListHelper().construct(new)
-        print(node)
         return node
 
 def test_solution():
-    assert str(Solution().swapPairs(head = ListNode(1,ListNode(2,ListNode(3,ListNode(4)))))) == str(LinkedListHelper().construct([2,1,4,3]))
-    assert str(Solution().swapPairs(head = ListNode(0,ListNode(4,ListNode(9,ListNode(2)))))) == str(LinkedListHelper().construct([4,0,2,9]))
-    # assert str(Solution().swapPairs(head = ListNode())) == str(LinkedListHelper().construct())
-    assert str(Solution().swapPairs(head = ListNode(1))) == str(LinkedListHelper().construct([1]))
+    assert str(Solution().reverseKGroup(head = LinkedListHelper().construct([1,2,3,4,5]), k = 2)) == str(LinkedListHelper().construct([2,1,4,3,5]))
+    assert str(Solution().reverseKGroup(head = LinkedListHelper().construct([1,2,3,4,5]), k = 3)) == str(LinkedListHelper().construct([3,2,1,4,5]))
+    # assert str(Solution().reverseKGroup(head = ListNode())) == str(LinkedListHelper().construct())
+    # assert str(Solution().reverseKGroup(head = ListNode(1))) == str(LinkedListHelper().construct([1]))
 
 
 
