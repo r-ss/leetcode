@@ -21,17 +21,6 @@ class Solution:
         return max if max > result else result
 
 
-# start = maxLength = 0
-# usedChar = {}
-
-# for i in range(len(s)):
-#     if s[i] in usedChar and start <= usedChar[s[i]]:
-#         start = usedChar[s[i]] + 1
-#     else:
-#         maxLength = max(maxLength, i - start + 1)
-
-#     usedChar[s[i]] = i
-
 def test_solution():
     assert Solution().countPrimeros("510101") == 1
     assert Solution().countPrimeros("51110101") == 3
